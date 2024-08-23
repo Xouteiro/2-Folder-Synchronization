@@ -1,7 +1,7 @@
 # 2 Folders Synchronization
 Python program that synchronizes two folders, source and replica, and maintain a full, identical copy of source folder at replica folder.
 
-- This program works in Linux Bash and in Windows PowerShell. (verificaaaaaaR)
+- This program works in Linux Bash and in Windows PowerShell.
 - Synchronization is one-way: after the synchronization the content of the replica folder is modified to match the content of the main
 folder.
 - Synchronization is performed periodically.
