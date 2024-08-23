@@ -50,7 +50,7 @@ def get_changes_report(main_content, replica_content, item, log_file):
         main_lines = main_content.splitlines()
         replica_lines = replica_content.splitlines()
         max_lines = max(len(main_lines), len(replica_lines))
-        write_report(f'Line: Main | Replica', log_file)
+        write_report(f'Line: Actual Main | Previous Replica', log_file)
         
         for i in range(max_lines):
             main_line = main_lines[i] if i < len(main_lines) else ''
@@ -59,6 +59,7 @@ def get_changes_report(main_content, replica_content, item, log_file):
             if main_line != replica_line:
                 write_report(f'{i+1}: {main_line} | {replica_line}', log_file)
 
+                
 
 def synchronize_folders(folder_path, replica_folder_path, log_file):
     folder_content = os.listdir(folder_path)
@@ -70,7 +71,7 @@ def synchronize_folders(folder_path, replica_folder_path, log_file):
 
             if not os.path.exists(replica_item_path):
                 os.system(f'{copy_command} {double_quotes}{item_path}{double_quotes} {double_quotes}{replica_item_path}{double_quotes} {suppress_command}')
-                write_report(f'File {item} copied to {replica_folder_path}\n', log_file)
+                write_report(f'File {item} created in {replica_folder_path}\n', log_file)
 
             else:
                 main_item_time = os.path.getmtime(item_path)
@@ -104,6 +105,6 @@ while True:
         
     synchronize_folders(args.main_folder_path, args.replica_folder_path, args.log_file)
 
-    print(f'Synchronizing done. Next syncronization in {args.interval} seconds.\n')
+    print(f'Synchronizing done. Next synchronization in {args.interval} seconds.\n')
 
     time.sleep(args.interval)
